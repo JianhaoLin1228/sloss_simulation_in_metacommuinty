@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -N metacommunity_test_for_SLOSS
+#PBS -l nodes=8:ppn=28
+#PBS -l walltime=80:00:00
+#PBS -j oe
+#PBS -q newtest
+#PBS -V
+cd $PBS_O_WORKDIR
+
+echo "Starting python run at"`date`
+
+export PATH=/public/home/202133241020/miniconda3/bin:$PATH
+source activate
+conda activate base
+mpiexec -np 216 python mpi_runing.py
+
+echo "Finished python run at"`date`
+
